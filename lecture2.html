@@ -213,6 +213,49 @@ h2{
   color:var(--muted);
   cursor:pointer;
 }
+
+.clue-gate{
+  max-width:520px;
+  margin:10px auto 20px;
+  background:#fffdf7;
+  border:1px solid rgba(73,53,45,.08);
+  border-radius:16px;
+  padding:28px 20px;
+  text-align:center;
+  box-shadow:0 14px 35px rgba(73,53,45,.10);
+}
+.lock{font-size:40px;margin-bottom:8px;}
+.clue-input{
+  width:100%;
+  max-width:390px;
+  border:1.5px solid #ddd0c8;
+  background:#fff;
+  border-radius:14px;
+  padding:13px;
+  text-align:center;
+  outline:none;
+  color:#49352d;
+  margin:12px auto 5px;
+  display:block;
+  font-family:inherit;
+}
+.clue-input:focus{
+  border-color:#b7acd8;
+  box-shadow:0 0 0 4px rgba(183,172,216,.16);
+}
+.clue-error{
+  min-height:18px;
+  margin:5px 0 8px;
+  font-size:12px;
+  font-weight:900;
+  color:#b94d67;
+}
+
+
+@media (max-width:600px){
+  .memory img{max-height:240px;}
+}
+
 </style>
 </head>
 
@@ -220,6 +263,30 @@ h2{
 
 <div class="app">
 <div class="paper">
+
+<div id="clueGate" class="clue-gate">
+  <div class="lock">🔐</div>
+  <span class="kicker">before lecture 2 ♡</span>
+  <h3 style="margin:12px 0 5px;">Ask me first hehe ♡</h3>
+  <p class="small">Hint: what I lovingly call you when you're being a menace 😭</p>
+
+  <input
+    id="clueInput"
+    class="clue-input"
+    type="text"
+    placeholder="type the clue..."
+    autocomplete="off"
+    onkeydown="if(event.key==='Enter') checkClue()"
+  >
+
+  <p id="clueError" class="clue-error"></p>
+
+  <button class="btn primary" onclick="checkClue()">
+    polachu pohh hmph, unlock it ♡
+  </button>
+</div>
+
+<div id="lectureContent" style="display:none;">
 
 <span class="kicker">lecture 2 ♡</span>
 
@@ -348,8 +415,33 @@ AGHH just,one more lecture→
 
 </div>
 </div>
+</div>
 
 <script>
+
+function checkClue(){
+  const input = document.getElementById("clueInput");
+  const answer = input.value.trim().toLowerCase();
+
+  if(answer === "blockhead"){
+    document.getElementById("clueGate").style.display = "none";
+    document.getElementById("lectureContent").style.display = "block";
+    localStorage.setItem("lecture2Unlocked", "true");
+  }else{
+    document.getElementById("clueError").textContent =
+      "hehe nopeee 😭 ask me for the clue properlyyy";
+    input.value = "";
+    input.focus();
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  if(localStorage.getItem("lecture2Unlocked") === "true"){
+    document.getElementById("clueGate").style.display = "none";
+    document.getElementById("lectureContent").style.display = "block";
+  }
+});
+
 
 function pick(button){
 
