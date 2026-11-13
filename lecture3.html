@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 3 ♡</title>
+
+<style>
+:root{
+  --cream:#fff8ec;
+  --paper:#fffdf7;
+  --lavink:#55436d;
+  --pink:#ef7890;
+  --ink:#49352d;
+  --muted:#806f78;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(208,210,255,.5),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(249,199,209,.45),transparent 25%),
+    var(--cream);
+  color:var(--ink);
+  font-family:"Trebuchet MS",system-ui,sans-serif;
+  padding:18px;
+}
+
+.app{
+  width:min(100%,650px);
+  margin:auto;
+}
+
+.paper{
+  background:var(--paper);
+  border-radius:12px;
+  padding:25px 18px;
+  box-shadow:0 15px 40px rgba(73,53,45,.1);
+  text-align:center;
+}
+
+h2{
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:var(--lavink);
+  font-size:clamp(34px,8vw,50px);
+  margin:10px 0;
+}
+
+.kicker{
+  display:inline-block;
+  padding:7px 11px;
+  background:#efedff;
+  color:var(--lavink);
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.bouquet{
+  width:min(100%,500px);
+  margin:10px auto;
+}
+
+.bouquet img{
+  width:100%;
+  display:block;
+}
+
+.love-note{
+  margin:15px auto;
+  padding:15px;
+  background:#fff1f4;
+  border-radius:15px;
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:#704d59;
+}
+
+.gift{
+  width:140px;
+  height:110px;
+  margin:15px auto;
+  position:relative;
+  cursor:pointer;
+  animation:wiggle 2s ease-in-out infinite;
+}
+
+.box{
+  position:absolute;
+  bottom:0;
+  left:14px;
+  width:112px;
+  height:75px;
+  background:#f58fa1;
+  border-radius:5px;
+}
+
+.lid{
+  position:absolute;
+  top:22px;
+  left:8px;
+  width:124px;
+  height:25px;
+  background:#ef7890;
+  border-radius:5px;
+}
+
+.ribbon-v{
+  position:absolute;
+  top:18px;
+  left:62px;
+  width:17px;
+  height:82px;
+  background:#ffd1da;
+}
+
+.ribbon-h{
+  position:absolute;
+  top:24px;
+  left:9px;
+  width:122px;
+  height:14px;
+  background:#ffd1da;
+}
+
+.bow:before,
+.bow:after{
+  content:"";
+  position:absolute;
+  top:4px;
+  width:40px;
+  height:28px;
+  background:#ffd1da;
+  border-radius:50%;
+}
+
+.bow:before{left:42px}
+.bow:after{left:70px}
+
+.hidden{
+  display:none;
+}
+
+.hidden.show{
+  display:block;
+}
+
+.drawer{
+  background:#fffaf5;
+  border:1px solid #e6d8d0;
+  border-radius:15px;
+  margin:9px 0;
+  overflow:hidden;
+}
+
+.drawer button{
+  width:100%;
+  border:0;
+  background:transparent;
+  padding:14px;
+  text-align:left;
+  font-weight:bold;
+  color:#684e5e;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+
+.content{
+  display:none;
+  padding:0 14px 14px;
+  line-height:1.6;
+  color:#6e5d63;
+}
+
+.drawer.open .content{
+  display:block;
+}
+
+.letter{
+  background:#fffdf8;
+  border:1px dashed #d7c5ba;
+  border-radius:15px;
+  padding:16px;
+  text-align:left;
+  line-height:1.65;
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.primary{
+  color:white;
+  background:var(--pink);
+}
+
+.back{
+  margin-top:18px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+@keyframes wiggle{
+  0%,100%{transform:rotate(-1deg)}
+  50%{transform:rotate(1deg)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="paper">
+
+<span class="kicker">
+gon smack the prof if he was rude to my girl 😤
+</span>
+
+<h2>YOU MADE IT AMMUUU YAYYYY🌷</h2>
+
+<p class="small">
+10 hours is donee??!! WTAFFF HUHHH, LETSGGOOOOO
+</p>
+
+<div class="bouquet">
+<img src="assets/bouquet.png" alt="your bouquet">
+</div>
+
+<div class="love-note">
+<strong>Maam here is still lookin gorgeousaurus 🦖💗, hehe</strong>
+<br>
+<span class="small">
+
+</span>
+</div>
+
+<div
+class="gift"
+onclick="openGift()">
+
+<div class="box"></div>
+<div class="lid"></div>
+<div class="ribbon-v"></div>
+<div class="ribbon-h"></div>
+<div class="bow"></div>
+
+</div>
+
+<button class="btn primary" onclick="openGift()">
+Figured these might help after the long ahh dayy, clickk
+</button>
+
+<div id="giftContents" class="hidden">
+
+<!-- THINGS TO KNOW -->
+
+<div class="drawer">
+
+<button onclick="drawer(this)">
+💌 a few things I want you to know
+<span>+</span>
+</button>
+
+<div class="content">
+
+You're going to make friends.<br>
+You're going to get lost sometimes.<br>
+You're going to have bad days.<br>
+You're going to have amazing days.<br><br>
+
+<strong>
+And I'll be here through all of them. ♡
+</strong>
+
+</div>
+</div>
+
+
+
+
+
+<br>
+
+<button
+class="btn primary"
+onclick="location.href='final.html'">
+
+one last thing... ♡
+
+</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function openGift(){
+
+  document
+  .getElementById("giftContents")
+  .classList.add("show");
+
+}
+
+function drawer(button){
+
+  button.parentElement.classList.toggle("open");
+
+}
+
+</script>
+
+</body>
+</html>

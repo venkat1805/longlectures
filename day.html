@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Little Mission ♡</title>
+
+<style>
+:root{
+  --cream:#fff8ec;
+  --paper:#fffdf7;
+  --lav:#d0d2ff;
+  --lavink:#55436d;
+  --pink:#ef7890;
+  --ink:#49352d;
+  --muted:#806f78;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(208,210,255,.5),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(249,199,209,.45),transparent 25%),
+    var(--cream);
+  color:var(--ink);
+  font-family:"Trebuchet MS",system-ui,sans-serif;
+  padding:18px;
+}
+
+.app{
+  width:min(100%,700px);
+  margin:auto;
+}
+
+.paper{
+  background:var(--paper);
+  border-radius:12px;
+  padding:25px 18px;
+  box-shadow:0 15px 40px rgba(73,53,45,.1);
+}
+
+.center{text-align:center}
+
+h1,h2,h3{
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:var(--lavink);
+}
+
+h2{
+  font-size:clamp(32px,8vw,48px);
+  margin:10px 0;
+}
+
+.kicker{
+  display:inline-block;
+  padding:7px 11px;
+  background:#efedff;
+  color:var(--lavink);
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.progress{
+  height:8px;
+  background:#ece6e2;
+  border-radius:99px;
+  overflow:hidden;
+  margin:15px auto 5px;
+  max-width:450px;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--pink);
+  transition:.4s;
+}
+
+.growth{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin:15px 0;
+}
+
+.flower{
+  font-size:25px;
+  opacity:.2;
+  filter:grayscale(1);
+}
+
+.flower.active{
+  opacity:1;
+  filter:none;
+}
+
+.lecture-list{
+  display:grid;
+  gap:13px;
+  margin-top:20px;
+}
+
+.lecture{
+  display:grid;
+  grid-template-columns:50px 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:15px;
+  border-radius:18px;
+  background:#fffdf8;
+  border:1px solid #e9ddd4;
+}
+
+.icon{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:#f0eeff;
+  font-size:25px;
+}
+
+.lecture b{
+  display:block;
+  color:var(--lavink);
+  margin-bottom:3px;
+}
+
+.lecture small{
+  color:var(--muted);
+}
+
+.lecture.done{
+  background:#f8fcf5;
+  border-color:#cfe0c8;
+}
+
+.mini{
+  border:0;
+  border-radius:12px;
+  padding:9px 12px;
+  background:#f7dce3;
+  color:#704d59;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.mini:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.note{
+  margin-top:15px;
+  text-align:center;
+  padding:13px;
+  border-radius:15px;
+  background:#fff1e6;
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:#76535d;
+}
+
+.back{
+  margin-top:18px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="paper">
+
+<div class="center">
+
+<span class="kicker">
+your little mission 🤧
+</span>
+
+<h2>One lecture at a time.</h2>
+
+<p class="small">
+You ask me for the clue, unlock your lil reward,
+then go survive class. Deal?
+</p>
+
+<div class="progress">
+  <span id="progress"></span>
+</div>
+
+<p class="small" id="progressText">
+0 / 3 survived ♡
+</p>
+
+<div class="growth">
+  <span class="flower" id="f1">🌻</span>
+  <span class="flower" id="f2">🌷</span>
+  <span class="flower" id="f3">🌸</span>
+</div>
+
+</div>
+
+<div class="lecture-list">
+
+<div class="lecture" id="l1">
+  <div class="icon">🌦️</div>
+  <div>
+    <b>Lecture 1</b>
+    <small id="s1">Ask him for your clue.</small>
+  </div>
+  <button class="mini" id="b1" onclick="go(1)">
+    open
+  </button>
+</div>
+
+<div class="lecture" id="l2">
+  <div class="icon">🌧️</div>
+  <div>
+    <b>Lecture 2</b>
+    <small id="s2">Locked for now.</small>
+  </div>
+  <button class="mini" id="b2" onclick="go(2)">
+    🔒
+  </button>
+</div>
+
+<div class="lecture" id="l3">
+  <div class="icon">🌈</div>
+  <div>
+    <b>Lecture 3</b>
+    <small id="s3">Locked for now.</small>
+  </div>
+  <button class="mini" id="b3" onclick="go(3)">
+    🔒
+  </button>
+</div>
+
+</div>
+
+<div class="note">
+  And, I am right there ammu ♡
+</div>
+
+<div class="center">
+<button class="back" onclick="location.href='index.html'">
+← back
+</button>
+</div>
+
+</div>
+</div>
+
+<script>
+
+let completed =
+Number(localStorage.getItem("ammuProgress") || 0);
+
+function update(){
+
+  document.getElementById("progress").style.width =
+    (completed / 3 * 100) + "%";
+
+  document.getElementById("progressText").textContent =
+    completed + " / 3 survived ♡";
+
+  for(let i=1;i<=3;i++){
+
+    const button=document.getElementById("b"+i);
+    const status=document.getElementById("s"+i);
+    const card=document.getElementById("l"+i);
+    const flower=document.getElementById("f"+i);
+
+    card.classList.remove("done");
+
+    if(i<=completed){
+
+      card.classList.add("done");
+      status.textContent="Completed ♡";
+      button.textContent="✓";
+      button.disabled=true;
+      flower.classList.add("active");
+
+    }else if(i===completed+1){
+
+      status.textContent="Ask him for your clue.";
+      button.textContent="open";
+      button.disabled=false;
+
+    }else{
+
+      status.textContent="Locked for now.";
+      button.textContent="🔒";
+      button.disabled=true;
+
+    }
+  }
+}
+
+function go(n){
+
+  if(n !== completed+1) return;
+
+  location.href="lecture"+n+".html";
+}
+
+update();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 2 ♡</title>
+
+<style>
+:root{
+  --cream:#fff8ec;
+  --paper:#fffdf7;
+  --lav:#d0d2ff;
+  --lavink:#55436d;
+  --pink:#ef7890;
+  --ink:#49352d;
+  --muted:#806f78;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(208,210,255,.5),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(249,199,209,.45),transparent 25%),
+    var(--cream);
+  color:var(--ink);
+  font-family:"Trebuchet MS",system-ui,sans-serif;
+  padding:18px;
+}
+
+.app{
+  width:min(100%,650px);
+  margin:auto;
+}
+
+.paper{
+  background:var(--paper);
+  border-radius:12px;
+  padding:25px 18px;
+  box-shadow:0 15px 40px rgba(73,53,45,.1);
+  text-align:center;
+}
+
+h2,h3{
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:var(--lavink);
+}
+
+h2{
+  font-size:clamp(32px,8vw,48px);
+  margin:10px 0;
+}
+
+.kicker{
+  display:inline-block;
+  padding:7px 11px;
+  background:#efedff;
+  color:var(--lavink);
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  max-width:470px;
+  margin:15px auto;
+}
+
+.choice{
+  border:1px solid #ead9df;
+  background:#fff6f8;
+  border-radius:15px;
+  padding:13px 7px;
+  font-weight:900;
+  color:#704d59;
+  cursor:pointer;
+}
+
+.choice.selected{
+  border-color:var(--pink);
+  background:#ffe6eb;
+}
+
+.result{
+  min-height:40px;
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  color:#704d59;
+}
+
+.tools{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:15px 0;
+}
+
+.tool{
+  border:1px solid #e5d9d0;
+  background:white;
+  border-radius:14px;
+  padding:10px 13px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.secret{
+  display:none;
+  margin:12px auto;
+  max-width:480px;
+}
+
+.secret.show{
+  display:block;
+}
+
+.inner{
+  background:#fffaf3;
+  border:1px dashed #d9c7bb;
+  border-radius:15px;
+  padding:15px;
+}
+
+.memory img{
+
+  display:block;
+  width:auto;
+  max-width:100%;
+  max-height:280px;
+  height:auto;
+  object-fit:contain;
+  border-radius:8px;
+  margin:0 auto;
+
+}
+
+
+
+.need-grid{
+  display:grid;
+  gap:7px;
+}
+
+.need-grid button{
+  border:1px solid #e4d7d2;
+  background:white;
+  border-radius:12px;
+  padding:11px;
+  text-align:left;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.coupon-list{
+  display:grid;
+  gap:6px;
+  margin-top:10px;
+}
+
+.coupon-list div{
+  background:white;
+  border-radius:10px;
+  padding:9px;
+  font-size:13px;
+}
+
+.dog{
+  width:min(100%,270px);
+  margin:18px auto;
+}
+
+.dog img{
+  width:100%;
+  display:block;
+  border-radius:18px;
+}
+
+.caption{
+  margin-top:8px;
+  font-family:"Comic Sans MS","Bradley Hand",cursive;
+  font-weight:bold;
+  color:#76506b;
+}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.primary{
+  color:white;
+  background:var(--pink);
+}
+
+.back{
+  margin-top:18px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="paper">
+
+<span class="kicker">lecture 2 ♡</span>
+
+<h2>Halfway there ammuu!!</h2>
+
+<p class="small">
+
+</p>
+
+<h3>edhavudhu venumna choose pannikalameee</h3>
+
+
+
+<div id="poisonResult" class="result">
+Go ahead and click em pattuma
+</div>
+
+<div class="tools">
+
+<button class="tool"
+onclick="toggle('memory')">
+📸 memory
+</button>
+
+<button class="tool"
+onclick="toggle('needs')">
+🥹 what I need
+</button>
+
+
+
+<button class="tool"
+onclick="toggle('coupon')">
+🎟 coupon
+</button>
+
+</div>
+
+<!-- SEPTEMBER MEMORY -->
+<div id="memory" class="secret memory">
+
+<div class="inner">
+
+<img src="assets/our-photo-2.jpg">
+
+<div style="margin-top:9px;font-family:'Comic Sans MS',cursive">
+
+</div>
+
+
+<!-- NEEDS -->
+<div id="needs" class="secret">
+
+<div class="inner">
+
+<div class="need-grid">
+
+<button onclick="need('reassurance')">
+🦾 click for some jhee bhoom bha support
+</button>
+
+<button onclick="need('motivation')">
+🫶🏼 click for some motivation
+</button>
+
+<button onclick="need('miss')">
+💋 click if u can see, heh
+</button>
+
+</div>
+
+<div id="needResult" class="result"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- COUPON -->
+<div id="coupon" class="secret">
+
+<div class="inner">
+
+<h3>🎟 ONE FREE BOYFRIEND SERVICE</h3>
+
+<div class="coupon-list">
+
+<div>📞 emergency call</div>
+<div>🗣 unlimited complaining</div>
+<div>🫂 one virtual hug</div>
+<div>👂 I listen and stay shushed hmph</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- DOG — KEEP THIS IN LECTURE 2 -->
+<div class="dog">
+
+<img
+src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXZiZzNiemQ2dXRvYmFxY2FhOTVoc3loNTV0dTQ0NTV2NWM5YWRxdyZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/dYx3YFq2OiVLIssQH9/giphy.gif"
+alt="happy cute dog">
+
+<div class="caption">
+prolly me shamelessly staring at u if I were in ur class 👀
+</div>
+
+</div>
+
+<p style="font-family:'Comic Sans MS',cursive;color:#76506b">
+
+</p>
+
+<button class="btn primary" onclick="finish()">
+AGHH just,one more lecture→
+</button>
+
+<br>
+
+<button class="back" onclick="location.href='day.html'">
+← back
+</button>
+
+</div>
+</div>
+
+<script>
+
+function pick(button){
+
+  document
+  .querySelectorAll(".choice")
+  .forEach(x=>x.classList.remove("selected"));
+
+  button.classList.add("selected");
+
+  document.getElementById("poisonResult").textContent =
+  "Aghh come heree, wait ill come there and giveeee...hereee mwahhhh ❤️";
+
+}
+
+function toggle(id){
+
+  document.getElementById(id).classList.toggle("show");
+
+}
+
+function need(type){
+
+  const messages={
+
+    reassurance:
+    "En pattuma is doing better than she thinks, mwahhhh. One step at a time, together letsgooooo.",
+
+    motivation:
+    "Aghh one more lecture, that's it ammuu. Apromah maam free ah irundha vena come back and complain to me 🌚👉🏼👈🏼",
+
+    miss:
+    "I miss you too aghhh, just imagine me sitting beside you, maybe like stealing your hand under the desk if thats okayy"
+
+  };
+
+  document.getElementById("needResult").textContent =
+  messages[type];
+
+}
+
+function finish(){
+
+  localStorage.setItem("ammuProgress","2");
+
+  location.href="day.html";
+
+}
+
+</script>
+
+</body>
+</html>

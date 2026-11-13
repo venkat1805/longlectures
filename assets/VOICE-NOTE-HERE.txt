@@ -1,0 +1,11 @@
+VOICE NOTE PLACEHOLDER
+-----------------------
+When you upload the voice note, name it exactly:
+voice-note.m4a
+
+and put it in this assets folder.
+
+The website is already configured to play:
+assets/voice-note.m4a
+
+You do not need to change the HTML.
